@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            margin: 0 auto;
+            margin-top: 30px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:active {
+            background-color: #3d9142;
+        }
+
+        /* Position the logout button in the top-right corner */
+        #logout {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>This is home page</h1>
+    </header>
+
+    <div class="container">
+        <button id="logout" type="button" onclick="logoutUser()">Logout</button>
+        <p>Welcome to your home page content!</p>
+    </div>
+
+    <script>
+        function logoutUser() {
+            fetch('/logout', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(res => {
+                    if (res.status === 200) {
+                        window.location.href = '/index.html';
+                    } else {                        
+                        console.error('Logout failed');
+                    }
+                })
+                .catch(err => {
+                    console.error('An error occurred while processing the request:', err);
+                });
+        }
+    </script>
+</body>
+
+</html>
